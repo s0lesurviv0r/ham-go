@@ -105,6 +105,16 @@ func (q *QSOList) Redraw() {
 			width: 12,
 		},
 		{
+			label: "Sig",
+			field: adif.SIG,
+			width: 6,
+		},
+		{
+			label: "Sig Info",
+			field: adif.SIGInfo,
+			width: 10,
+		},
+		{
 			label:       "Notes",
 			field:       adif.Notes,
 			backupField: adif.Comment,

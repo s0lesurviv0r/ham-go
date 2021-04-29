@@ -41,6 +41,9 @@ type QSO struct {
 	entity           *ComboBox
 	operatorLocation *maidenhead.Point
 
+	sig     *ComboBox
+	sigInfo *TextEdit
+
 	rig    *rig.RigCache
 	custom []CustomField
 }
@@ -173,6 +176,22 @@ func NewQSO(yPos int, theme Theme, lookup callsigns.Lookup, customFields []Custo
 	x += 41
 	pc.AddWidget(notes)
 
+	pc.AddWidget(NewLabel(x, yPos+4, "Sig"))
+	sig := NewComboBox(x, yPos+5)
+	sig.AddItem("")
+	for _, b := range adif.SigList {
+		sig.AddItem(b)
+	}
+	pc.AddWidget(sig)
+	x += sig.Width() + 2
+
+	pc.AddWidget(NewLabel(x, yPos+4, "Sig Info"))
+	sigInfo := NewTextEdit(x, yPos+5)
+	sigInfo.SetWidth(12)
+	sigInfo.SetForceUpperCase(true)
+	pc.AddWidget(sigInfo)
+	x += sigInfo.Width() + 2
+
 	for i := 0; i < len(customFields); i++ {
 		f := &customFields[i]
 		pc.AddWidget(NewLabel(x, yPos+4, f.Label))
@@ -204,6 +223,8 @@ func NewQSO(yPos int, theme Theme, lookup callsigns.Lookup, customFields []Custo
 		date:      date,
 		time:      time,
 		notes:     notes,
+		sig:       sig,
+		sigInfo:   sigInfo,
 		custom:    customFields,
 	}
 
@@ -285,6 +306,8 @@ func (q *QSO) SetDefaults() {
 	q.stx.SetValue("")
 	q.entity.SetSelected("")
 	q.notes.SetValue("")
+	q.sig.SetSelected("")
+	q.sigInfo.SetValue("")
 	for _, f := range q.custom {
 		f.editor.SetValue(f.Default)
 	}
@@ -464,6 +487,18 @@ func (q *QSO) GetRecord() adif.Record {
 			Value: q.notes.Value(),
 		})
 
+	record = append(record,
+		adif.Field{
+			Name:  adif.SIG,
+			Value: q.sig.Value(),
+		})
+
+	record = append(record,
+		adif.Field{
+			Name:  adif.SIGInfo,
+			Value: q.sigInfo.Value(),
+		})
+
 	// save any custom fields
 	for _, f := range q.custom {
 		record = append(record,
@@ -511,6 +546,8 @@ func (q *QSO) SetRecord(r adif.Record) {
 	q.time.SetValue(r.Get(adif.TimeOn))
 	q.date.SetValue(r.Get(adif.QSODateStart))
 	q.notes.SetValue(r.Get(adif.Notes))
+	q.sig.SetSelected(r.Get(adif.SIG))
+	q.sigInfo.SetValue(r.Get(adif.SIGInfo))
 	for _, f := range q.custom {
 		f.editor.SetValue(r.Get(adif.Identifier(f.Name)))
 	}

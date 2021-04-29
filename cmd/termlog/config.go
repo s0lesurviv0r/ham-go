@@ -164,12 +164,6 @@ func NewConfig() *Config {
 		Name:    "Create Empty File",
 		Command: "touch /tmp/command_executed.txt",
 	})
-	cfg.Operator.CustomFields = append(cfg.Operator.CustomFields, ui.CustomField{
-		Label:   "SOTA",
-		Name:    "sota_ref",
-		Default: "",
-		Width:   8,
-	})
 	// find tqsl on the user's path
 	tqslPath, err := exec.LookPath("tqsl")
 	if err != nil {
