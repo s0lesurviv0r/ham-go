@@ -24,6 +24,8 @@ type Operator struct {
 	County  string
 	State   string
 	Country string
+	Antenna string
+	Power   int
 	// GIT related
 	GitPushAfterCommit bool   // If true, push to the log repository after committing the logs
 	GitKey             string // Path to the git key to use (e.g. ~/.ssh/id_rsa)
@@ -124,11 +126,6 @@ func (c *Config) SaveAs(filename string) error {
 // AddHeadersToLog adds confifgured operator headers to a log file
 func (c *Config) AddHeadersToLog(alog *adif.Log) {
 	alog.SetHeader(adif.MyName, c.Operator.Name)
-	alog.SetHeader(adif.MyGridSquare, c.Operator.Grid)
-	alog.SetHeader(adif.MyCity, c.Operator.City)
-	alog.SetHeader(adif.MyState, c.Operator.State)
-	alog.SetHeader(adif.MyCounty, c.Operator.County)
-	alog.SetHeader(adif.MyCountry, c.Operator.Country)
 	alog.SetHeader(adif.Operator, c.Operator.Call)
 }
 
