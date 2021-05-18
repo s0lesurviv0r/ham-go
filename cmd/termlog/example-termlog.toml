@@ -5,6 +5,8 @@
     name = "My Name"
     call = "MYCALL"
     grid = "MYGRID"
+    antenna = "MyAntenna"
+    power = "MyPower"
     county = "MyCounty"
     city = "MyCity"
     state = "MyState"
@@ -13,7 +15,7 @@
     sigInfo = "MySigInfo"
     logdir = "~/ham-logs/"
 
- [rig]
+[rig]
     type = "FT857D"
     enabled = true
     [rig.config]
@@ -22,8 +24,6 @@
         databits = 8
         stopbits = 2
         parity = "even"
-
-
 
 # use the free callook for US lookups, and do a lookup based on callsign prefix
 # if that fails
