@@ -2,7 +2,7 @@
 
 ## cmd/termlog
 
-![screenshot](https://raw.githubusercontent.com/tzneal/ham-go/master/_screenshots/screenshot.png)
+![screenshot](https://raw.githubusercontent.com/s0lesurviv0r/ham-go/master/_screenshots/screenshot.png)
 
 The main driver for writing the rest of this code.  A cross platform console
 based ham contact logger.  I'm developing it for my own use, so it only has
@@ -10,17 +10,18 @@ features I need/want.
 
 - Saves logs as ADIF files with custom fields
 - Supports auto-commiting log filesgit to a git repository
-- DX cluster & POTA spot monitoring
+- DX cluster, SOTA, & POTA spot monitoring
 - Radio control through hamlib (github.com/dh1tw/goHamlib)
 - Logs for both WSJT-X and fldigi
 - LoTW integration (syncs QSL information from LoTW to stored ADIF files)
+- Band Conditions from HamQSL
 
 ## Installation
 
 ### Linux x64
     ```
     sudo apt-get install -y libhamlib2
-    sudo wget https://github.com/tzneal/ham-go/releases/download/v0.2.0/termlog.amd64 -O /usr/bin/termlog
+    sudo wget https://github.com/s0lesurviv0r/ham-go/releases/download/v0.3.0/termlog.amd64 -O /usr/bin/termlog
     sudo chmod a+x /usr/bin/termlog
     /usr/bin/termlog --upgrade-config
     ```
@@ -28,7 +29,7 @@ features I need/want.
 ### Linux/32 bit ARM (Raspberry Pi)
 ```
 sudo apt-get install -y libhamlib2
-sudo wget https://github.com/tzneal/ham-go/releases/download/v0.2.0/termlog.arm -O /usr/bin/termlog
+sudo wget https://github.com/s0lesurviv0r/ham-go/releases/download/v0.3.0/termlog.arm -O /usr/bin/termlog
 sudo chmod a+x /usr/bin/termlog
 /usr/bin/termlog --upgrade-config
 ```
@@ -36,12 +37,12 @@ sudo chmod a+x /usr/bin/termlog
 ### Linux/64 bit ARM
 ```
 sudo apt-get install -y libhamlib2
-sudo wget https://github.com/tzneal/ham-go/releases/download/v0.2.0/termlog.arm64 -O /usr/bin/termlog
+sudo wget https://github.com/s0lesurviv0r/ham-go/releases/download/v0.3.0/termlog.arm64 -O /usr/bin/termlog
 sudo chmod a+x /usr/bin/termlog
 /usr/bin/termlog --upgrade-config
 ```
 
-Precompiled binaries are also available at https://github.com/tzneal/ham-go/releases
+Precompiled binaries are also available at https://github.com/s0lesurviv0r/ham-go/releases
 
 ## Configuration
 
