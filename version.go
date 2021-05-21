@@ -1,4 +1,4 @@
 package ham
 
-const Version = "v0.1.0-2-g6d58692"
-const BuildDate = "2020-05-02"
+const Version = "v0.3.0"
+const BuildDate = "2021-05-20"

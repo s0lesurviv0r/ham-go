@@ -28,7 +28,7 @@ RUN apt-get update \
 
 ARG TAG
 RUN mkdir -p /go/src/github.com/tzneal/
-RUN cd /go/src/github.com/tzneal/ && git clone -b $TAG https://github.com/tzneal/ham-go.git
+RUN cd /go/src/github.com/tzneal/ && git clone -b $TAG https://github.com/s0lesurviv0r/ham-go.git
 RUN cd /go/src/github.com/tzneal/ham-go/release-build && make write-version
 RUN cd /go/src/github.com/tzneal/ham-go && git log HEAD~1
 
