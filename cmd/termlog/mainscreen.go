@@ -395,8 +395,53 @@ func (m *mainScreen) logRoutine() {
 			if m.cfg.Operator.Sig != "" {
 				rec.record = append(rec.record, adif.Field{Name: adif.MySIG, Value: m.cfg.Operator.Sig})
 			}
+
 			if m.cfg.Operator.SigInfo != "" {
 				rec.record = append(rec.record, adif.Field{Name: adif.MySIGInfo, Value: m.cfg.Operator.SigInfo})
+			}
+
+			if m.cfg.Operator.Call != "" {
+				rec.record = append(
+					rec.record, adif.Field{Name: adif.Call, Value: m.cfg.Operator.Call})
+			}
+
+			if m.cfg.Operator.Grid != "" {
+				rec.record = append(
+					rec.record, adif.Field{Name: adif.MyGridSquare, Value: m.cfg.Operator.Grid})
+			}
+
+			if m.cfg.Operator.City != "" {
+				rec.record = append(
+					rec.record, adif.Field{Name: adif.MyCity, Value: m.cfg.Operator.City})
+			}
+
+			if m.cfg.Operator.County != "" {
+				rec.record = append(
+					rec.record, adif.Field{Name: adif.MyCounty, Value: m.cfg.Operator.County})
+			}
+
+			if m.cfg.Operator.Country != "" {
+				rec.record = append(
+					rec.record, adif.Field{Name: adif.MyCountry, Value: m.cfg.Operator.Country})
+			}
+
+			if m.cfg.Operator.Antenna != "" {
+				rec.record = append(
+					rec.record, adif.Field{Name: adif.MyAntenna, Value: m.cfg.Operator.Antenna})
+			}
+
+			if m.cfg.Rig.Manufacturer != "" && m.cfg.Rig.Model != "" {
+				rig := m.cfg.Rig.Manufacturer + " " + m.cfg.Rig.Model
+				rec.record = append(
+					rec.record, adif.Field{Name: adif.MyRig, Value: rig})
+			}
+
+			if rec.record.Get(adif.TXPower) != "" {
+				rec.record = append(
+					rec.record, adif.Field{Name: adif.TXPower, Value: rec.record.Get(adif.TXPower)})
+			} else if m.cfg.Operator.Power > 0 {
+				rec.record = append(
+					rec.record, adif.Field{Name: adif.TXPower, Value: fmt.Sprintf("%d", m.cfg.Operator.Power)})
 			}
 
 			// upload to LoTW?
@@ -416,6 +461,7 @@ func (m *mainScreen) logRoutine() {
 		}
 	}
 }
+
 func (m *mainScreen) exportCabrillo() {
 	exportFilename, ok := ui.InputString(m.controller, "Enter Export Filename")
 	if !ok {

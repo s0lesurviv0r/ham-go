@@ -5,6 +5,8 @@
     name = "My Name"
     call = "MYCALL"
     grid = "MYGRID"
+    antenna = "My Antenna"
+    power = "My Power"
     county = "MyCounty"
     city = "MyCity"
     state = "MyState"
