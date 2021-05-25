@@ -21,7 +21,7 @@ features I need/want.
 ### Linux x64
     ```
     sudo apt-get install -y libhamlib2
-    sudo wget https://github.com/s0lesurviv0r/ham-go/releases/download/v0.3.0/termlog.amd64 -O /usr/bin/termlog
+    sudo wget https://github.com/s0lesurviv0r/ham-go/releases/download/v0.3.1/termlog.amd64 -O /usr/bin/termlog
     sudo chmod a+x /usr/bin/termlog
     /usr/bin/termlog --upgrade-config
     ```
@@ -29,7 +29,7 @@ features I need/want.
 ### Linux/32 bit ARM (Raspberry Pi)
 ```
 sudo apt-get install -y libhamlib2
-sudo wget https://github.com/s0lesurviv0r/ham-go/releases/download/v0.3.0/termlog.arm -O /usr/bin/termlog
+sudo wget https://github.com/s0lesurviv0r/ham-go/releases/download/v0.3.1/termlog.arm -O /usr/bin/termlog
 sudo chmod a+x /usr/bin/termlog
 /usr/bin/termlog --upgrade-config
 ```
@@ -37,7 +37,7 @@ sudo chmod a+x /usr/bin/termlog
 ### Linux/64 bit ARM
 ```
 sudo apt-get install -y libhamlib2
-sudo wget https://github.com/s0lesurviv0r/ham-go/releases/download/v0.3.0/termlog.arm64 -O /usr/bin/termlog
+sudo wget https://github.com/s0lesurviv0r/ham-go/releases/download/v0.3.1/termlog.arm64 -O /usr/bin/termlog
 sudo chmod a+x /usr/bin/termlog
 /usr/bin/termlog --upgrade-config
 ```

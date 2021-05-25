@@ -46,6 +46,8 @@ type QSO struct {
 
 	rig    *rig.RigCache
 	custom []CustomField
+
+	original adif.Record // Original record before edit
 }
 type CustomField struct {
 	Name    string
@@ -521,10 +523,24 @@ func (q *QSO) GetRecord() adif.Record {
 		}
 	}
 
+	// Build map of all fields seen so far so we can pull from the original
+	// if not populated already
+	seenMap := make(map[adif.Identifier]interface{})
+	for _, r := range record {
+		seenMap[r.Name] = struct{}{}
+	}
+
+	for _, r := range q.original {
+		if _, seen := seenMap[r.Name]; !seen {
+			record = append(record, r)
+		}
+	}
+
 	return record
 }
 
 func (q *QSO) SetRecord(r adif.Record) {
+	q.original = r
 	q.call.SetValue(r.Get(adif.Call))
 	if q.freq != nil {
 		q.freq.SetValue(r.Get(adif.Frequency))
