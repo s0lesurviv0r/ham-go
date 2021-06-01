@@ -53,9 +53,9 @@ type SolarData struct {
 	KIndexNt                string                  `xml:"kindexnt"`
 	XRay                    string                  `xml:"xray"`
 	Sunspots                int                     `xml:"sunspots"`
-	HeliumLine              float32                 `xml:"heliumline"`
-	ProtonFlux              int                     `xml:"protonflux"`
-	ElectronFlux            int                     `xml:"electronflux"`
+	HeliumLine              string                  `xml:"heliumline"`
+	ProtonFlux              string                  `xml:"protonflux"`
+	ElectronFlux            string                  `xml:"electronflux"`
 	Aurora                  int                     `xml:"aurora"`
 	Normalization           float32                 `xml:"normalization"`
 	LatDegree               float32                 `xml:"latdegree"`
@@ -122,12 +122,13 @@ func (c *HamQSLClient) run() {
 			log.Printf("error parsing HamQSL solar data: %s", err)
 		}
 		updatedStr := strings.Trim(result.SolarData.UpdatedStr, " ")
-		updatedTime, err := time.Parse("02 Jan 2006 0304 MST", updatedStr)
+		updatedTime, err := time.Parse("02 Jan 2006 1504 MST", updatedStr)
 		if err != nil {
 			log.Printf("error parsing updated time '%s': %s", updatedStr, err)
+		} else {
+			result.SolarData.Updated = updatedTime
+			c.Solar <- result
 		}
-		result.SolarData.Updated = updatedTime
-		c.Solar <- result
 		return true
 	}
 
