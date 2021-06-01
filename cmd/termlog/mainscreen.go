@@ -814,6 +814,7 @@ func (m *mainScreen) showConditions() {
 		sb.WriteString(fmt.Sprintf("%s %s\t%s", band.Name, timeStr, band.Condition))
 		sb.WriteString("\n")
 	}
+
 	sb.WriteString("\n")
 	sb.WriteString("Press ESC to close")
 	ui.Splash("Conditions", sb.String())

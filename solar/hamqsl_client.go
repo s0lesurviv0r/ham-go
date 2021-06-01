@@ -122,12 +122,13 @@ func (c *HamQSLClient) run() {
 			log.Printf("error parsing HamQSL solar data: %s", err)
 		}
 		updatedStr := strings.Trim(result.SolarData.UpdatedStr, " ")
-		updatedTime, err := time.Parse("02 Jan 2006 0304 MST", updatedStr)
+		updatedTime, err := time.Parse("02 Jan 2006 1504 MST", updatedStr)
 		if err != nil {
 			log.Printf("error parsing updated time '%s': %s", updatedStr, err)
+		} else {
+			result.SolarData.Updated = updatedTime
+			c.Solar <- result
 		}
-		result.SolarData.Updated = updatedTime
-		c.Solar <- result
 		return true
 	}
 
